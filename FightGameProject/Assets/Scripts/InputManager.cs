@@ -8,6 +8,9 @@ public class InputManager : MonoBehaviour{
 
     public float MovimentAxis { get { return movimentAxis; } }
 
+    //public delegate void SouthButtonAction();
+    //public SouthButtonAction southButtonAction;
+
     private void Awake(){
         //SetUp
         actionControl = new ActionControl();
@@ -15,6 +18,16 @@ public class InputManager : MonoBehaviour{
         //GetMoviment
         actionControl.MainAction.Moviment.performed += ctx => {
             movimentAxis = ctx.ReadValue<float>();
+        };
+
+        actionControl.MainAction.Moviment.canceled += ctx => {
+            movimentAxis = 0;
+        };
+        
+        //SouthButton
+        actionControl.MainAction.SouthButton.performed += ctx =>{
+            PlayerManager.instance.MovimentManager.Jump();
+            //if (southButtonAction != null) southButtonAction();
         };
     }
 

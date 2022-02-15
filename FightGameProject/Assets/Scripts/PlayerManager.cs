@@ -8,6 +8,9 @@ public class PlayerManager : MonoBehaviour {
 
     [SerializeField] MovimentManager movimentManager;
     [SerializeField] InputManager inputManager;
+    [SerializeField] Rigidbody playerRigidbody;
+
+    [SerializeField] LayerMask groundLayer;
 
     void Awake() {
         if (instance) Destroy(this);
@@ -16,5 +19,12 @@ public class PlayerManager : MonoBehaviour {
 
     public MovimentManager MovimentManager { get { return movimentManager; } }
     public InputManager InputManager { get { return inputManager; } }
+    public Rigidbody PlayerRigidbody { get { return playerRigidbody; } }
 
+    public bool IsGrounded() {
+        var colission = GetComponent<Collider>();
+        float offset = 0.1f;
+        if (Physics.Raycast(transform.position, -transform.up, colission.bounds.extents.y + offset, groundLayer)) return true;
+        else return false;
+    }
 }

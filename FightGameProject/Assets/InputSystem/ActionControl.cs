@@ -25,6 +25,14 @@ public class @ActionControl : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""SouthButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""01e18da7-0794-475f-8297-150c3721d229"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -60,6 +68,17 @@ public class @ActionControl : IInputActionCollection, IDisposable
                     ""action"": ""Moviment"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""68444480-c74e-4944-a666-bd42962bd80a"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SouthButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -69,6 +88,7 @@ public class @ActionControl : IInputActionCollection, IDisposable
         // MainAction
         m_MainAction = asset.FindActionMap("MainAction", throwIfNotFound: true);
         m_MainAction_Moviment = m_MainAction.FindAction("Moviment", throwIfNotFound: true);
+        m_MainAction_SouthButton = m_MainAction.FindAction("SouthButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -119,11 +139,13 @@ public class @ActionControl : IInputActionCollection, IDisposable
     private readonly InputActionMap m_MainAction;
     private IMainActionActions m_MainActionActionsCallbackInterface;
     private readonly InputAction m_MainAction_Moviment;
+    private readonly InputAction m_MainAction_SouthButton;
     public struct MainActionActions
     {
         private @ActionControl m_Wrapper;
         public MainActionActions(@ActionControl wrapper) { m_Wrapper = wrapper; }
         public InputAction @Moviment => m_Wrapper.m_MainAction_Moviment;
+        public InputAction @SouthButton => m_Wrapper.m_MainAction_SouthButton;
         public InputActionMap Get() { return m_Wrapper.m_MainAction; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -136,6 +158,9 @@ public class @ActionControl : IInputActionCollection, IDisposable
                 @Moviment.started -= m_Wrapper.m_MainActionActionsCallbackInterface.OnMoviment;
                 @Moviment.performed -= m_Wrapper.m_MainActionActionsCallbackInterface.OnMoviment;
                 @Moviment.canceled -= m_Wrapper.m_MainActionActionsCallbackInterface.OnMoviment;
+                @SouthButton.started -= m_Wrapper.m_MainActionActionsCallbackInterface.OnSouthButton;
+                @SouthButton.performed -= m_Wrapper.m_MainActionActionsCallbackInterface.OnSouthButton;
+                @SouthButton.canceled -= m_Wrapper.m_MainActionActionsCallbackInterface.OnSouthButton;
             }
             m_Wrapper.m_MainActionActionsCallbackInterface = instance;
             if (instance != null)
@@ -143,6 +168,9 @@ public class @ActionControl : IInputActionCollection, IDisposable
                 @Moviment.started += instance.OnMoviment;
                 @Moviment.performed += instance.OnMoviment;
                 @Moviment.canceled += instance.OnMoviment;
+                @SouthButton.started += instance.OnSouthButton;
+                @SouthButton.performed += instance.OnSouthButton;
+                @SouthButton.canceled += instance.OnSouthButton;
             }
         }
     }
@@ -150,5 +178,6 @@ public class @ActionControl : IInputActionCollection, IDisposable
     public interface IMainActionActions
     {
         void OnMoviment(InputAction.CallbackContext context);
+        void OnSouthButton(InputAction.CallbackContext context);
     }
 }
