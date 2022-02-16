@@ -5,8 +5,10 @@ using UnityEngine;
 public class InputManager : MonoBehaviour{
     ActionControl actionControl;
     float movimentAxis;
+    bool movimentAxisState;
 
     public float MovimentAxis { get { return movimentAxis; } }
+    public bool MovimentAxisState { get { return movimentAxisState; } }
 
     //public delegate void SouthButtonAction();
     //public SouthButtonAction southButtonAction;
@@ -20,7 +22,12 @@ public class InputManager : MonoBehaviour{
             movimentAxis = ctx.ReadValue<float>();
         };
 
+        actionControl.MainAction.Moviment.started += ctx =>{
+            movimentAxisState = true;
+        };
+
         actionControl.MainAction.Moviment.canceled += ctx => {
+            movimentAxisState = false;
             movimentAxis = 0;
         };
         

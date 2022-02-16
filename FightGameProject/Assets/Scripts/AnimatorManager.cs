@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AnimatorManager : MonoBehaviour{
+    [SerializeField] Animator playerAnimator;
+
+    public void WalkFoward(bool state) {
+		if (state)
+			playerAnimator.SetBool("Walk Forward", true);
+		else
+			playerAnimator.SetBool("Walk Forward", false);
+	}
+
+	public void WalkBackward(bool state) {
+		if (state)
+			playerAnimator.SetBool("Walk Backward", true);
+		else
+			playerAnimator.SetBool("Walk Backward", false);
+	}
+
+	public void WalkAnimation(float state) {
+		Mathf.Clamp(state,-1,1);
+		playerAnimator.SetBool("Walking", PlayerManager.instance.InputManager.MovimentAxisState);
+		playerAnimator.SetFloat("WalkValue", state);
+	}
+
+	public void Punch() {
+		playerAnimator.SetTrigger("PunchTrigger");
+	}
+
+}

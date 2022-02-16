@@ -14,10 +14,13 @@ public class MovimentManager : MonoBehaviour{
     void Moviment() { 
         Vector3 finalPosition = transform.position + (transform.forward * PlayerManager.instance.InputManager.MovimentAxis) * velocity * Time.fixedDeltaTime;
         PlayerManager.instance.PlayerRigidbody.MovePosition(finalPosition);
+
+        PlayerManager.instance.AnimatorManager.WalkAnimation(PlayerManager.instance.InputManager.MovimentAxis);
     }
 
     public void Jump() {
-        if (PlayerManager.instance.IsGrounded()) 
-            PlayerManager.instance.PlayerRigidbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        //if (PlayerManager.instance.IsGrounded()) 
+        //PlayerManager.instance.PlayerRigidbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        PlayerManager.instance.AnimatorManager.Punch();
     }
 }
