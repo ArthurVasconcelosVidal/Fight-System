@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AnimatorManager : MonoBehaviour{
     [SerializeField] Animator playerAnimator;
+	[SerializeField] string punch;
 
 	public Animator PlayerAnimator { get { return playerAnimator; } }
 
@@ -28,7 +29,7 @@ public class AnimatorManager : MonoBehaviour{
 	}
 
 	public void Punch() {
-		playerAnimator.SetTrigger("PunchTrigger");
+		playerAnimator.SetTrigger(punch);
 	}
 
 }
