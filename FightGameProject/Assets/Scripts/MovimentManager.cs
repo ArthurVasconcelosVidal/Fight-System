@@ -5,15 +5,22 @@ using UnityEngine;
 public class MovimentManager : MonoBehaviour{
     [SerializeField] float velocity = 5;
     [SerializeField] float jumpForce = 5;
+    [SerializeField] Animator animator;
 
     // Update is called once per frame
     void FixedUpdate(){
-        Moviment();
+        //Moviment();
     }
 
-    void Moviment() { 
+    void Moviment() {
         Vector3 finalPosition = transform.position + (transform.forward * PlayerManager.instance.InputManager.MovimentAxis) * velocity * Time.fixedDeltaTime;
         PlayerManager.instance.PlayerRigidbody.MovePosition(finalPosition);
+    }
+
+    void OnAnimatorMove(){
+        PlayerManager.instance.transform.rotation = animator.rootRotation;
+
+        PlayerManager.instance.transform.position += animator.deltaPosition;
 
         PlayerManager.instance.AnimatorManager.WalkAnimation(PlayerManager.instance.InputManager.MovimentAxis);
     }
@@ -23,4 +30,6 @@ public class MovimentManager : MonoBehaviour{
         //PlayerManager.instance.PlayerRigidbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         PlayerManager.instance.AnimatorManager.Punch();
     }
+
+
 }

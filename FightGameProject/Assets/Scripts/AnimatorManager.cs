@@ -5,6 +5,8 @@ using UnityEngine;
 public class AnimatorManager : MonoBehaviour{
     [SerializeField] Animator playerAnimator;
 
+	public Animator PlayerAnimator { get { return playerAnimator; } }
+
     public void WalkFoward(bool state) {
 		if (state)
 			playerAnimator.SetBool("Walk Forward", true);
