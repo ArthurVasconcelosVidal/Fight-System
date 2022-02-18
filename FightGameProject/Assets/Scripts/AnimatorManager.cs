@@ -22,10 +22,10 @@ public class AnimatorManager : MonoBehaviour{
 			playerAnimator.SetBool("Walk Backward", false);
 	}
 
-	public void WalkAnimation(float state) {
-		Mathf.Clamp(state,-1,1);
+	public void WalkAnimation(float value) {
+		Mathf.Clamp(value, -1,1);
 		playerAnimator.SetBool("Walking", PlayerManager.instance.InputManager.MovimentAxisState);
-		playerAnimator.SetFloat("WalkValue", state);
+		playerAnimator.SetFloat("WalkValue", value);
 	}
 
 	public void Punch() {

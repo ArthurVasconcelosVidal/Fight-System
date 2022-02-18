@@ -20,8 +20,8 @@ public class MovimentManager : MonoBehaviour{
     void OnAnimatorMove(){
         //PlayerManager.instance.transform.rotation = animator.rootRotation;
 
-        PlayerManager.instance.transform.position += animator.deltaPosition * velocity * Time.fixedDeltaTime;
-
+        //PlayerManager.instance.transform.position += animator.deltaPosition * velocity * Time.fixedDeltaTime;
+        PlayerManager.instance.transform.position += Vector3.Scale(animator.deltaPosition, transform.forward) * velocity * Time.fixedDeltaTime;
         PlayerManager.instance.AnimatorManager.WalkAnimation(PlayerManager.instance.InputManager.MovimentAxis);
     }
 
