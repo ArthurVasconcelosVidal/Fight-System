@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour {
     [SerializeField] InputManager inputManager;
     [SerializeField] Rigidbody playerRigidbody;
     [SerializeField] AnimatorManager animatorManager;
+    [SerializeField] AttackManager attackManager;
     [SerializeField] LayerMask groundLayer;
 
     void Awake() {
@@ -21,6 +22,7 @@ public class PlayerManager : MonoBehaviour {
     public InputManager InputManager { get { return inputManager; } }
     public Rigidbody PlayerRigidbody { get { return playerRigidbody; } }
     public AnimatorManager AnimatorManager { get { return animatorManager; } }
+    public AttackManager AttackManager { get { return attackManager; } }
 
     public bool IsGrounded() {
         var colission = GetComponent<Collider>();

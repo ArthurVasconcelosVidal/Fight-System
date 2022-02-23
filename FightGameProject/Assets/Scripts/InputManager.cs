@@ -33,8 +33,18 @@ public class InputManager : MonoBehaviour{
         
         //SouthButton
         actionControl.MainAction.SouthButton.performed += ctx =>{
-            PlayerManager.instance.MovimentManager.Jump();
+            //PlayerManager.instance.MovimentManager.Jump();
             //if (southButtonAction != null) southButtonAction();
+        };
+
+        //NorthButton
+        actionControl.MainAction.NorthButton.started += ctx =>{
+            PlayerManager.instance.AttackManager.StrongAttack();
+        };
+
+        //WestButton
+        actionControl.MainAction.WestButton.started += ctx =>{
+            PlayerManager.instance.AttackManager.NormalAttack();
         };
     }
 

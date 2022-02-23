@@ -253,6 +253,7 @@ GameObject:
   - component: {fileID: 164186014}
   - component: {fileID: 164186012}
   - component: {fileID: 164186016}
+  - component: {fileID: 164186013}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -301,6 +302,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d185ee8915ae85f42b20e67d2ef811e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &164186013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164186009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1692dac65ef69242b6fae90a24e5d1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &164186014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,6 +330,7 @@ MonoBehaviour:
   inputManager: {fileID: 164186012}
   playerRigidbody: {fileID: 164186015}
   animatorManager: {fileID: 164186016}
+  attackManager: {fileID: 164186013}
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
@@ -793,6 +807,7 @@ MonoBehaviour:
   inputManager: {fileID: 1259669461}
   playerRigidbody: {fileID: 1259669463}
   animatorManager: {fileID: 1259669459}
+  attackManager: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
@@ -1052,6 +1067,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db7f56e7c1fe339479ced34fca98f461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 80
+  velocity: 50
   jumpForce: 5
   animator: {fileID: 2073648472}

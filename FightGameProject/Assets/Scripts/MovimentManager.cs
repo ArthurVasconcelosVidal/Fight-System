@@ -26,10 +26,8 @@ public class MovimentManager : MonoBehaviour{
     }
 
     public void Jump() {
-        //if (PlayerManager.instance.IsGrounded()) 
-        //PlayerManager.instance.PlayerRigidbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-        PlayerManager.instance.AnimatorManager.Punch();
+        if (PlayerManager.instance.IsGrounded()) 
+            PlayerManager.instance.PlayerRigidbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
-
 
 }

@@ -33,6 +33,22 @@ public class @ActionControl : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""NorthButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""bbd32057-ea51-4743-a8ec-d62808a8ac17"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""WestButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""b1b46f3d-eee0-4728-b4b7-f4f3948a42a0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -79,6 +95,28 @@ public class @ActionControl : IInputActionCollection, IDisposable
                     ""action"": ""SouthButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""633878ff-75e1-48cd-b786-4dc62d3f70a3"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NorthButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d251ece5-6b0e-41d3-89de-34a3cf6b9366"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WestButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -89,6 +127,8 @@ public class @ActionControl : IInputActionCollection, IDisposable
         m_MainAction = asset.FindActionMap("MainAction", throwIfNotFound: true);
         m_MainAction_Moviment = m_MainAction.FindAction("Moviment", throwIfNotFound: true);
         m_MainAction_SouthButton = m_MainAction.FindAction("SouthButton", throwIfNotFound: true);
+        m_MainAction_NorthButton = m_MainAction.FindAction("NorthButton", throwIfNotFound: true);
+        m_MainAction_WestButton = m_MainAction.FindAction("WestButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -140,12 +180,16 @@ public class @ActionControl : IInputActionCollection, IDisposable
     private IMainActionActions m_MainActionActionsCallbackInterface;
     private readonly InputAction m_MainAction_Moviment;
     private readonly InputAction m_MainAction_SouthButton;
+    private readonly InputAction m_MainAction_NorthButton;
+    private readonly InputAction m_MainAction_WestButton;
     public struct MainActionActions
     {
         private @ActionControl m_Wrapper;
         public MainActionActions(@ActionControl wrapper) { m_Wrapper = wrapper; }
         public InputAction @Moviment => m_Wrapper.m_MainAction_Moviment;
         public InputAction @SouthButton => m_Wrapper.m_MainAction_SouthButton;
+        public InputAction @NorthButton => m_Wrapper.m_MainAction_NorthButton;
+        public InputAction @WestButton => m_Wrapper.m_MainAction_WestButton;
         public InputActionMap Get() { return m_Wrapper.m_MainAction; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -161,6 +205,12 @@ public class @ActionControl : IInputActionCollection, IDisposable
                 @SouthButton.started -= m_Wrapper.m_MainActionActionsCallbackInterface.OnSouthButton;
                 @SouthButton.performed -= m_Wrapper.m_MainActionActionsCallbackInterface.OnSouthButton;
                 @SouthButton.canceled -= m_Wrapper.m_MainActionActionsCallbackInterface.OnSouthButton;
+                @NorthButton.started -= m_Wrapper.m_MainActionActionsCallbackInterface.OnNorthButton;
+                @NorthButton.performed -= m_Wrapper.m_MainActionActionsCallbackInterface.OnNorthButton;
+                @NorthButton.canceled -= m_Wrapper.m_MainActionActionsCallbackInterface.OnNorthButton;
+                @WestButton.started -= m_Wrapper.m_MainActionActionsCallbackInterface.OnWestButton;
+                @WestButton.performed -= m_Wrapper.m_MainActionActionsCallbackInterface.OnWestButton;
+                @WestButton.canceled -= m_Wrapper.m_MainActionActionsCallbackInterface.OnWestButton;
             }
             m_Wrapper.m_MainActionActionsCallbackInterface = instance;
             if (instance != null)
@@ -171,6 +221,12 @@ public class @ActionControl : IInputActionCollection, IDisposable
                 @SouthButton.started += instance.OnSouthButton;
                 @SouthButton.performed += instance.OnSouthButton;
                 @SouthButton.canceled += instance.OnSouthButton;
+                @NorthButton.started += instance.OnNorthButton;
+                @NorthButton.performed += instance.OnNorthButton;
+                @NorthButton.canceled += instance.OnNorthButton;
+                @WestButton.started += instance.OnWestButton;
+                @WestButton.performed += instance.OnWestButton;
+                @WestButton.canceled += instance.OnWestButton;
             }
         }
     }
@@ -179,5 +235,7 @@ public class @ActionControl : IInputActionCollection, IDisposable
     {
         void OnMoviment(InputAction.CallbackContext context);
         void OnSouthButton(InputAction.CallbackContext context);
+        void OnNorthButton(InputAction.CallbackContext context);
+        void OnWestButton(InputAction.CallbackContext context);
     }
 }

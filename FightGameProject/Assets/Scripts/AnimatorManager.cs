@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AnimatorManager : MonoBehaviour{
     [SerializeField] Animator playerAnimator;
-	[SerializeField] string punch;
 
 	public Animator PlayerAnimator { get { return playerAnimator; } }
 
@@ -28,8 +27,21 @@ public class AnimatorManager : MonoBehaviour{
 		playerAnimator.SetFloat("WalkValue", value);
 	}
 
-	public void Punch() {
-		playerAnimator.SetTrigger(punch);
+	public void Punch(int punchId) {
+		playerAnimator.SetInteger("Punch", punchId);
 	}
 
+	public void Damage() {
+		playerAnimator.SetTrigger("Damage");
+	}
+
+	public bool CurrentAnimationEnded(int animationID) {
+		Debug.Log(playerAnimator.GetCurrentAnimatorStateInfo(1).);
+		if (false){
+			var actualClipInfo = playerAnimator.GetCurrentAnimatorClipInfo(1);
+			Debug.Log(actualClipInfo[0].clip.name);
+			return true;
+		}
+		return false;
+	}
 }
