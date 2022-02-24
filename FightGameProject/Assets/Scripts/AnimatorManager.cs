@@ -29,19 +29,17 @@ public class AnimatorManager : MonoBehaviour{
 
 	public void Punch(int punchId) {
 		playerAnimator.SetInteger("Punch", punchId);
+		playerAnimator.SetTrigger("AtkTrigger");
 	}
 
 	public void Damage() {
 		playerAnimator.SetTrigger("Damage");
 	}
 
-	public bool CurrentAnimationEnded(int animationID) {
-		Debug.Log(playerAnimator.GetCurrentAnimatorStateInfo(1).);
-		if (false){
-			var actualClipInfo = playerAnimator.GetCurrentAnimatorClipInfo(1);
-			Debug.Log(actualClipInfo[0].clip.name);
-			return true;
-		}
-		return false;
+	public bool CurrentAttackAnimationEnded() {
+		if (playerAnimator.GetCurrentAnimatorClipInfo(1).Length > 0)
+			return false;
+
+		return true;
 	}
 }
