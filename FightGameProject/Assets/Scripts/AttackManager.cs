@@ -33,12 +33,12 @@ public class AttackManager : MonoBehaviour{
                 atkId = AtkId.notAtk;
                 break;
             case AtkId.endAtk:
-                //atkId = AtkId.baseAtk;
-                //PlayerManager.instance.AnimatorManager.Punch((int)atkId);
-                //null
+                //Null
                 break;
             case AtkId.midAtkEsp:
-                //null
+                atkId = AtkId.endAtk;
+                PlayerManager.instance.AnimatorManager.Punch((int)atkId);
+                atkId = AtkId.notAtk;
                 break;
             case AtkId.endAtkEsp:
                 //null
@@ -56,17 +56,19 @@ public class AttackManager : MonoBehaviour{
 
         switch (atkId){
             case AtkId.notAtk:
-                //null
+                atkId = AtkId.baseAtk;
+                PlayerManager.instance.AnimatorManager.Punch((int)atkId);
                 break;
             case AtkId.baseAtk:
-                //null
+                atkId = AtkId.midAtk;
+                PlayerManager.instance.AnimatorManager.Punch((int)atkId);
                 break;
             case AtkId.midAtk:
                 atkId = AtkId.midAtkEsp;
                 PlayerManager.instance.AnimatorManager.Punch((int)atkId);
                 break;
             case AtkId.endAtk:
-                //null
+                //Null
                 break;
             case AtkId.midAtkEsp:
                 atkId = AtkId.endAtkEsp;
@@ -74,13 +76,15 @@ public class AttackManager : MonoBehaviour{
                 atkId = AtkId.notAtk;
                 break;
             case AtkId.endAtkEsp:
-                //atkId = AtkId.baseAtk;
-                //PlayerManager.instance.AnimatorManager.Punch((int)atkId);
+                //Null
                 break;
             default:
+                //Null
                 break;
         }
         Debug.Log("Strong Attack");
         
     }
+
+
 }

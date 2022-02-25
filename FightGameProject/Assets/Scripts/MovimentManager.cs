@@ -30,4 +30,7 @@ public class MovimentManager : MonoBehaviour{
             PlayerManager.instance.PlayerRigidbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 
+    public void Teste(){
+        Debug.Log("CHAMO AQUI IRMÃO");
+    }
 }
