@@ -60,9 +60,9 @@ ModelImporter:
       curves: []
       events:
       - time: 0.49833715
-        functionName: Teste
+        functionName: NextComboAttack
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: db7f56e7c1fe339479ced34fca98f461, type: 3}
+        objectReferenceParameter: {fileID: 11500000, guid: 5ab853a768211a145adef61650bd2801, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

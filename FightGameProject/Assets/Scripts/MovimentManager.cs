@@ -29,8 +29,4 @@ public class MovimentManager : MonoBehaviour{
         if (PlayerManager.instance.IsGrounded()) 
             PlayerManager.instance.PlayerRigidbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
-
-    public void Teste(){
-        Debug.Log("CHAMO AQUI IRMÃO");
-    }
 }

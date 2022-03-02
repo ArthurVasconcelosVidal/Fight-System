@@ -13,8 +13,12 @@ enum AtkId {
 
 public class AttackManager : MonoBehaviour{
     AtkId atkId = AtkId.notAtk;
+    [SerializeField] float comboAttackTime;
+    [SerializeField] bool nextAttack; //Debug
 
     public void NormalAttack(){
+        #region
+        /*
         if (!PlayerManager.instance.AnimatorManager.CurrentAttackAnimationEnded())
             return;
 
@@ -48,10 +52,14 @@ public class AttackManager : MonoBehaviour{
                 break;
         }
         Debug.Log("Normal Attack");
+        */
+        #endregion
+        PlayerManager.instance.AnimatorManager.Punch(0);
     }
 
     public void StrongAttack(){
-        if (!PlayerManager.instance.AnimatorManager.CurrentAttackAnimationEnded())
+        #region
+        /*if (!PlayerManager.instance.AnimatorManager.CurrentAttackAnimationEnded())
             return;
 
         switch (atkId){
@@ -82,9 +90,22 @@ public class AttackManager : MonoBehaviour{
                 //Null
                 break;
         }
+        //PlayerManager.instance.AnimatorManager.Punch((int)atkId);
+
         Debug.Log("Strong Attack");
-        
+        */
+        #endregion
+        PlayerManager.instance.AnimatorManager.Punch(0);
     }
 
+    IEnumerator AttackComboTimer(){
+        nextAttack = true;
+        yield return new WaitForSeconds(comboAttackTime);
+        nextAttack = false;
+    }
+
+    public void StartComboTimer() {
+        StartCoroutine("AttackComboTimer");
+    }
 
 }

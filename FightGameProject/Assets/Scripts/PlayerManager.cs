@@ -11,7 +11,7 @@ public class PlayerManager : MonoBehaviour {
     [SerializeField] Rigidbody playerRigidbody;
     [SerializeField] AnimatorManager animatorManager;
     [SerializeField] AttackManager attackManager;
-    [SerializeField] LayerMask groundLayer;
+    [SerializeField] LayerMask groundLayer; 
 
     void Awake() {
         if (instance) Destroy(this);
