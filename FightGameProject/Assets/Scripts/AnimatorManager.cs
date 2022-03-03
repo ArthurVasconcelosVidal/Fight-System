@@ -9,20 +9,6 @@ public class AnimatorManager : MonoBehaviour{
 	public Animator PlayerAnimator { get { return playerAnimator; } }
     public PlayerAnimationEvents PlayerAnimationsEvents { get { return animationsEvents; } }
 
-	public void WalkFoward(bool state) {
-		if (state)
-			playerAnimator.SetBool("Walk Forward", true);
-		else
-			playerAnimator.SetBool("Walk Forward", false);
-	}
-
-	public void WalkBackward(bool state) {
-		if (state)
-			playerAnimator.SetBool("Walk Backward", true);
-		else
-			playerAnimator.SetBool("Walk Backward", false);
-	}
-
 	public void WalkAnimation(float value) {
 		Mathf.Clamp(value, -1,1);
 		playerAnimator.SetBool("Walking", PlayerManager.instance.InputManager.MovimentAxisState);
@@ -40,7 +26,7 @@ public class AnimatorManager : MonoBehaviour{
 		playerAnimator.SetTrigger("ShortcuttAtk");
 	}
 
-	public void Damage() {
+	public void Damage() { 
 		playerAnimator.SetTrigger("Damage");
 	}
 

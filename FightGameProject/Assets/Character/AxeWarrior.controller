@@ -468,7 +468,7 @@ AnimatorStateMachine:
     m_Position: {x: 620, y: 180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1190926109591676928}
-    m_Position: {x: 610, y: -100, z: 0}
+    m_Position: {x: 600, y: -150, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5589540675609536368}
     m_Position: {x: 580, y: -30, z: 0}
@@ -936,7 +936,10 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: ShortcuttAtk
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5589540675609536368}
   m_Solo: 0

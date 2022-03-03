@@ -39,12 +39,12 @@ public class InputManager : MonoBehaviour{
 
         //NorthButton
         actionControl.MainAction.NorthButton.started += ctx =>{
-            PlayerManager.instance.AttackManager.StrongAttack();
+            PlayerManager.instance.AttackManager.Attack(AttackType.strong);
         };
 
         //WestButton
         actionControl.MainAction.WestButton.started += ctx =>{
-            PlayerManager.instance.AttackManager.NormalAttack();
+            PlayerManager.instance.AttackManager.Attack(AttackType.normal);
         };
     }
 

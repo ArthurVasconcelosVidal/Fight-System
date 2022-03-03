@@ -4,98 +4,64 @@ using UnityEngine;
 
 enum AtkId {
     notAtk = 0,
-    baseAtk = 1,
-    midAtk = 2,
-    endAtk = 3,
-    midAtkEsp = 4,
-    endAtkEsp = 5
+    baseAtk,
+    midAtk,
+    endAtk,
+    midAtkEsp,
+    endAtkEsp
+}
+
+public enum AttackType{
+    normal = 1,
+    strong
 }
 
 public class AttackManager : MonoBehaviour{
     AtkId atkId = AtkId.notAtk;
     [SerializeField] float comboAttackTime;
     [SerializeField] bool nextAttack; //Debug
+    [SerializeField] bool teste = false;
 
-    public void NormalAttack(){
-        #region
-        /*
-        if (!PlayerManager.instance.AnimatorManager.CurrentAttackAnimationEnded())
+    public void Attack(AttackType attackType) {
+        if (!PlayerManager.instance.AnimatorManager.CurrentAttackAnimationEnded() || teste)
             return;
+        else
+            teste = true;
 
         switch (atkId){
             case AtkId.notAtk:
                 atkId = AtkId.baseAtk;
-                PlayerManager.instance.AnimatorManager.Punch((int)atkId);
                 break;
             case AtkId.baseAtk:
-                atkId = AtkId.midAtk;
-                PlayerManager.instance.AnimatorManager.Punch((int)atkId);
+                if (attackType == AttackType.normal)
+                    atkId = AtkId.midAtk;
+                else if(attackType == AttackType.strong)
+                    atkId = AtkId.midAtkEsp;
                 break;
             case AtkId.midAtk:
                 atkId = AtkId.endAtk;
-                PlayerManager.instance.AnimatorManager.Punch((int)atkId);
-                atkId = AtkId.notAtk;
                 break;
             case AtkId.endAtk:
-                //Null
-                break;
-            case AtkId.midAtkEsp:
-                atkId = AtkId.endAtk;
-                PlayerManager.instance.AnimatorManager.Punch((int)atkId);
-                atkId = AtkId.notAtk;
-                break;
-            case AtkId.endAtkEsp:
-                //null
-                break;
-            default:
-                //null
-                break;
-        }
-        Debug.Log("Normal Attack");
-        */
-        #endregion
-        PlayerManager.instance.AnimatorManager.Punch(0);
-    }
-
-    public void StrongAttack(){
-        #region
-        /*if (!PlayerManager.instance.AnimatorManager.CurrentAttackAnimationEnded())
-            return;
-
-        switch (atkId){
-            case AtkId.notAtk:
                 atkId = AtkId.baseAtk;
-                PlayerManager.instance.AnimatorManager.Punch((int)atkId);
-                break;
-            case AtkId.baseAtk:
-                atkId = AtkId.midAtk;
-                PlayerManager.instance.AnimatorManager.Punch((int)atkId);
-                break;
-            case AtkId.midAtk:
-                atkId = AtkId.midAtkEsp;
-                PlayerManager.instance.AnimatorManager.Punch((int)atkId);
-                break;
-            case AtkId.endAtk:
-                //Null
                 break;
             case AtkId.midAtkEsp:
-                atkId = AtkId.endAtkEsp;
-                PlayerManager.instance.AnimatorManager.Punch((int)atkId);
-                atkId = AtkId.notAtk;
+                if (attackType == AttackType.normal)
+                    atkId = AtkId.endAtk;
+                else if(attackType == AttackType.strong)
+                    atkId = AtkId.endAtkEsp;
                 break;
             case AtkId.endAtkEsp:
-                //Null
+                atkId = AtkId.baseAtk;
                 break;
             default:
-                //Null
                 break;
         }
-        //PlayerManager.instance.AnimatorManager.Punch((int)atkId);
 
-        Debug.Log("Strong Attack");
-        */
-        #endregion
-        PlayerManager.instance.AnimatorManager.Punch(0);
+        if (nextAttack)
+            PlayerManager.instance.AnimatorManager.ShortPunch((int)atkId);
+        else {
+            PlayerManager.instance.AnimatorManager.Punch((int)atkId);
+        }
     }
 
     IEnumerator AttackComboTimer(){

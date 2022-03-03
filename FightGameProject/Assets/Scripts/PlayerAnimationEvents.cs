@@ -6,5 +6,6 @@ public class PlayerAnimationEvents : MonoBehaviour{
 
     void NextComboAttack(){
         Debug.Log("Passou por aqui");
+        PlayerManager.instance.AttackManager.StartComboTimer();
     }
 }
