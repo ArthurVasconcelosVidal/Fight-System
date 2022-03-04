@@ -314,9 +314,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1692dac65ef69242b6fae90a24e5d1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  comboAttackTime: 0.5
+  comboAttackTime: 1
   nextAttack: 0
-  teste: 0
+  canAttackAgain: 1
 --- !u!114 &164186014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,7 +366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 2073648472}
-  animationsEvents: {fileID: 0}
+  animationsEvents: {fileID: 919132148006674440}
 --- !u!1 &197787290
 GameObject:
   m_ObjectHideFlags: 0

@@ -59,7 +59,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.49833715
+      - time: 0.4174548
         functionName: NextComboAttack
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 5ab853a768211a145adef61650bd2801, type: 3}

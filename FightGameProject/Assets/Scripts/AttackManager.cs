@@ -18,15 +18,16 @@ public enum AttackType{
 
 public class AttackManager : MonoBehaviour{
     AtkId atkId = AtkId.notAtk;
-    [SerializeField] float comboAttackTime;
-    [SerializeField] bool nextAttack; //Debug
-    [SerializeField] bool teste = false;
+    //[SerializeField] float comboAttackTime;
+    [SerializeField] bool canAttackAgain = true;
+
+    public void CanAttackAgain() => canAttackAgain = true;
 
     public void Attack(AttackType attackType) {
-        if (!PlayerManager.instance.AnimatorManager.CurrentAttackAnimationEnded() || teste)
+        if (!PlayerManager.instance.AnimatorManager.CurrentAttackAnimationEnded() || !canAttackAgain)
             return;
         else
-            teste = true;
+            canAttackAgain = false;
 
         switch (atkId){
             case AtkId.notAtk:
@@ -57,21 +58,7 @@ public class AttackManager : MonoBehaviour{
                 break;
         }
 
-        if (nextAttack)
-            PlayerManager.instance.AnimatorManager.ShortPunch((int)atkId);
-        else {
-            PlayerManager.instance.AnimatorManager.Punch((int)atkId);
-        }
+        PlayerManager.instance.AnimatorManager.Punch((int)atkId);
+        
     }
-
-    IEnumerator AttackComboTimer(){
-        nextAttack = true;
-        yield return new WaitForSeconds(comboAttackTime);
-        nextAttack = false;
-    }
-
-    public void StartComboTimer() {
-        StartCoroutine("AttackComboTimer");
-    }
-
 }
