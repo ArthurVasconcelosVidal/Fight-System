@@ -16,16 +16,8 @@ public class AnimatorManager : MonoBehaviour{
 	}
 
 	public void Punch(int punchId) {
-		Debug.Log("Chamo aqui");
 		playerAnimator.SetInteger("Punch", punchId);
 		playerAnimator.SetTrigger("AtkTrigger");
-	}
-
-	public void ShortPunch(int punchId) {
-		Debug.Log("Chamo aqui");
-		playerAnimator.SetInteger("Punch", punchId);
-		//playerAnimator.SetTrigger("AtkTrigger");
-		playerAnimator.SetTrigger("AmendAtk");
 	}
 
 	public void Damage() { 

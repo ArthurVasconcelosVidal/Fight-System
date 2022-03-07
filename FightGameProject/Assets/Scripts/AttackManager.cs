@@ -18,29 +18,28 @@ public enum AttackType{
 
 public class AttackManager : MonoBehaviour{
     AtkId atkId = AtkId.notAtk;
-    //[SerializeField] float comboAttackTime;
     [SerializeField] bool canAttackAgain = true;
 
     public void CanAttackAgain() => canAttackAgain = true;
 
     public void Attack(AttackType attackType) {
-        if (!PlayerManager.instance.AnimatorManager.CurrentAttackAnimationEnded() || !canAttackAgain)
+        if (!canAttackAgain)
             return;
-        else
-            canAttackAgain = false;
+
+        canAttackAgain = false;
 
         switch (atkId){
             case AtkId.notAtk:
                 atkId = AtkId.baseAtk;
                 break;
             case AtkId.baseAtk:
-                if (attackType == AttackType.normal)
-                    atkId = AtkId.midAtk;
-                else if(attackType == AttackType.strong)
-                    atkId = AtkId.midAtkEsp;
+                atkId = AtkId.midAtk;
                 break;
             case AtkId.midAtk:
-                atkId = AtkId.endAtk;
+                if (attackType == AttackType.normal)
+                    atkId = AtkId.endAtk;
+                else if (attackType == AttackType.strong)
+                    atkId = AtkId.midAtkEsp;
                 break;
             case AtkId.endAtk:
                 atkId = AtkId.baseAtk;
@@ -59,6 +58,5 @@ public class AttackManager : MonoBehaviour{
         }
 
         PlayerManager.instance.AnimatorManager.Punch((int)atkId);
-        
     }
 }
