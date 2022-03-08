@@ -19,6 +19,7 @@ public enum AttackType{
 public class AttackManager : MonoBehaviour{
     AtkId atkId = AtkId.notAtk;
     [SerializeField] bool canAttackAgain = true;
+    [SerializeField] float timeToReset = 1; //Default
 
     public void CanAttackAgain() => canAttackAgain = true;
 
@@ -58,5 +59,16 @@ public class AttackManager : MonoBehaviour{
         }
 
         PlayerManager.instance.AnimatorManager.Punch((int)atkId);
+
+    }
+
+    IEnumerator ResetAttackTimer() {
+        yield return new WaitForSeconds(timeToReset);
+        atkId = AtkId.notAtk;
+    }
+
+    public void StartResetTime() {
+        StopCoroutine("ResetAttackTimer");
+        StartCoroutine("ResetAttackTimer");
     }
 }

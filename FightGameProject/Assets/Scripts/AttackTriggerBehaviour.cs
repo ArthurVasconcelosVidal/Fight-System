@@ -5,12 +5,11 @@ using UnityEngine;
 public class AttackTriggerBehaviour : MonoBehaviour{
 
     void OnTriggerEnter(Collider other) {
-        if (!PlayerManager.instance.AnimatorManager.CurrentAttackAnimationEnded()) {
-            /*
-            if (other.TryGetComponent<IAttackBehaviour>) {
-                Continue Here
-            }*/
-        } 
+        if (other.CompareTag("Enemy") && !PlayerManager.instance.AnimatorManager.CurrentAttackAnimationEnded()){
+            IAttackBehaviour attackBehaviour;
+            if (other.TryGetComponent(out attackBehaviour))
+                attackBehaviour.AttackRecivedBehaviour();
+        }
     }
 
 }
