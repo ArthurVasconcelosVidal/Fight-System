@@ -315,6 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canAttackAgain: 1
+  timeToReset: 3
 --- !u!114 &164186014
 MonoBehaviour:
   m_ObjectHideFlags: 0
